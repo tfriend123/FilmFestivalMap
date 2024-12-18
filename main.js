@@ -263,7 +263,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
                 fillColor: getColorSmall(feature.properties["count"]),
                 weight: 2,
                 opacity: 1,
-                color: '#ffffff',
+                color: '#111111',
                 fillOpacity: 1
             };
         }
@@ -275,7 +275,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
 
             layer.setStyle({
                 weight: 5,
-                color: '#ffffff',
+                color: '#111111',
                 dashArray: '',
                 fillOpacity: 1
             });
@@ -291,7 +291,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
 
             layer.setStyle({
                 weight: 2,
-                color: '#ffffff',
+                color: '#111111',
                 dashArray: '',
                 fillOpacity: 1
             });
