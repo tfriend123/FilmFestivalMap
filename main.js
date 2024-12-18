@@ -231,36 +231,36 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
         // – Color ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         function getColorSmall(d) {
-            return d > 6 ? '#815B13FF' :
-                d > 5 ? '#a87a25' :
-                    d > 4 ? '#cf9c3f' :
-                        d > 3 ? '#ddb262' :
-                            d > 2 ? '#e6ca93' :
-                                d >= 1 ? '#f8e6c4' :
+            return d > 6 ? '#3b9ba6' :
+                d > 5 ? '#54a3ac' :
+                    d > 4 ? '#71aeb5' :
+                        d > 3 ? '#86b1b6' :
+                            d > 2 ? '#a5bec1' :
+                                d >= 1 ? '#cfdadc' :
                                     d > 0 ? 'rgb(195,195,195)' :
-                                        'rgba(195,195,195,0.25)';
+                                        '#252525';
         }
 
-        /*
 
-        #### In case it gets too large to handle a hand-picked scale
+
+       // #### In case it gets too large to handle a hand-picked scale
 
         function colorScale(d){
             const myColor = d3.scaleLinear()
-                .range(["#faecd1", "#815B13FF"])
+                .range(["#cfdadc", "#3b9ba6"])
                 .domain([0,9]);
 
             if (d === 0){
-                return 'rgba(195,195,195,0.25)';
+                return '#252525';
             }
             return myColor(d);
         }
 
-         */
+
 
         function state_styleSmall(feature) {
             return {
-                fillColor: getColorSmall(feature.properties["count"]),
+                fillColor: colorScale(feature.properties["count"]),
                 weight: 2,
                 opacity: 1,
                 color: '#111111',

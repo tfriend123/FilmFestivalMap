@@ -1,3 +1,8 @@
+
+    body{
+        background-color: #111111;
+    }
+
     #map {
         width: 1400px;
         height: 750px;
@@ -6,41 +11,69 @@
         /*border: 5px solid #F4C4D2FF; */
     }
 
+    .bebas-neue-regular {
+        font-family: "Bebas Neue", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .roboto-condensed {
+       font-family: "Roboto Condensed", serif;
+       font-optical-sizing: auto;
+       font-weight: 3;
+       font-style: normal;
+   }
+
     .info {
         position: absolute;
         padding: 6px 8px;
-        font: 20px/22px Arial, Helvetica, sans-serif;
+        font: 20px/22px Bebas Neue, Bebas Neue, sans-serif;
         background: white;
-        border: 1px solid #ffffff;
-        background: rgba(255,255,255,1);
+        border: 1px solid rgba(138, 138, 138, 1);
+        background: rgba(138, 138, 138, 0.9);
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border-radius: 10px;
         pointer-events: none; /* Allows mouse events to pass through */
         z-index: 1000;
         transition: transform 0.05s ease-in-out;
-        color: #aadad7;
+        color: #a4d3d8;
     }
     .info h4 {
         margin: 0 0 5px;
-        color: #b24363;
+        color: #ffffff;
     }
 
     .legend {
         position: absolute;
         padding: 10px 8px;
-        font: 20px/22px Arial, Helvetica, sans-serif;
+        font: 20px/22px Bebas Neue, Bebas Neue, sans-serif;
         background: white;
-        background: rgba(255,255,255,.8);
+        background: rgba(138, 138, 138, 0.9);
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border-radius: 10px;
         pointer-events: none; /* Allows mouse events to pass through */
         z-index: 1000;
         transition: transform 0.05s ease-in-out;
-        color: #aadad7;
+        color: #a4d3d8;
     }
     .legend h4 {
-        font: 30px/22px Arial, Helvetica, bold, sans-serif;
+        font: 30px/22px Bebas Neue, Bebas Neue, bold, sans-serif;
         padding: 6px 8px;
         margin: 0 0 5px;
-        color: #cf9c3f;
+        color: #ffffff;
+    }
+
+    .leaflet-popup-content-wrapper {
+        background-color: rgba(138, 138, 138, 0.9) !important; /* Force dark background */
+        color: rgba(255, 255, 255) !important; /* Force light text color */
+        font-family: Roboto Condensed, sans-serif !important;
+        font-size: 14px !important;
+        border-radius: 8px !important; /* Rounded corners */
+        box-shadow: 0 0 15px rgba(0,0,0,0.2) !important;
+        padding: 5px !important;
+    }
+
+    /* Style the popup pointer */
+    .leaflet-popup-tip {
+        background: rgba(138, 138, 138, 0.9) !important; /* Match the wrapper background */
     }
