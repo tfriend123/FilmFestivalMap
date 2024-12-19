@@ -1,4 +1,8 @@
+// – Initial GeoJson –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+
 d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
+
+    // – Data Loader –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
     d3.dsv(",", "Data/FestivalLoc.csv", (d) => {
         return {
@@ -16,6 +20,9 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
         var isActive = false;
         let stateMap;
         let markers = [];
+
+        // – GeoJson Loader ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+
         function jsonLoader (map, stateName){
             if (isActive && stateMap){
                 map.removeLayer(stateMap);
@@ -74,7 +81,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
                 var zoom = geojsonS.properties["zoom"];
 
                 map.removeLayer(worldMap);
-                map.setView([x, y], zoom);
+                map.flyTo([x, y], zoom, { duration: .7 });
 
                 stateMap = L.geoJson(geojsonS, {
                     style: state_styleSmall,
@@ -84,7 +91,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
             })
         }
 
-        // – Map ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – Map –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         var map = L.map('map', {
             center: [52.906402418294526, -47.96448321837776], // Centered over the US
@@ -154,7 +161,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        // – Info –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – Info ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         var info = L.control({position: 'topleft'});
 
@@ -207,7 +214,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
             info._div.style.display = 'none';
         }
 
-        // – Title ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – Title –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         var legend = L.control({position: 'topright'});
 
@@ -232,7 +239,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
 
         legend.addTo(map);
 
-        // – Color ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – Color –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         function getColorSmall(d) {
             return d > 6 ? '#3b9ba6' :
@@ -268,11 +275,11 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
                 weight: 2,
                 opacity: 1,
                 color: '#111111',
-                fillOpacity: 1
+                fillOpacity: 1,
             };
         }
 
-        // – Functions ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – Functions –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         function highlightFeature(e) {
             var layer = e.target;
@@ -316,7 +323,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
             else {
                 map.addLayer(worldMap);
                 map.removeLayer(stateMap);
-                map.setView([52.906402418294526, -47.96448321837776], 3);
+                map.flyTo([52.906402418294526, -47.96448321837776], 3, { duration: .4 });
                 mapName = "Film Festival Selections Worldwide";
                 markers.forEach(marker => map.removeLayer(marker));
                 markers = []; // Reset the markers array
@@ -332,7 +339,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
             });
         }
 
-        // – World ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
+        // – World –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– \\
 
         for (let i = 0; i < geojson.features.length; i++) {
             geojson.features[i].properties["count"] = 0; // Initialize count
