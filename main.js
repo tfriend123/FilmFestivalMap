@@ -312,13 +312,31 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
         }
 
         function toggleMap(e) {
-            let mapName = "";
+            let mapName = "Film Festival Selections Worldwide";
             var clickedFeature = e.target.feature;
-            if (!clickedFeature) return;
 
+            legend.update(mapName);
+            if (!clickedFeature){
+                mapName = "Film Festival Selections Worldwide";
+                return mapName;
+            }
             else if (map.hasLayer(worldMap)) {
-                jsonLoader(map, clickedFeature.properties.name);
-                mapName = "Festivals in: " + clickedFeature.properties.name;
+                d3.json("Data/" + clickedFeature.properties.name + ".geojson").then((geojsonS) => {
+                    if (geojsonS) {
+                        // If geojson data exists, proceed with loading the new map layer
+                        jsonLoader(map, clickedFeature.properties.name);
+                        mapName = "Festivals in: " + clickedFeature.properties.name;
+                        legend.update(mapName);
+                    } else {
+                        // If no geojson data is found, reset title to default
+                        mapName = "Film Festival Selections Worldwide";
+                        legend.update(mapName);
+                    }
+                }).catch((err) => {
+                    // In case of an error (like missing file), reset title to default
+                    mapName = "Film Festival Selections Worldwide";
+                    legend.update(mapName);
+                });
             }
             else {
                 map.addLayer(worldMap);

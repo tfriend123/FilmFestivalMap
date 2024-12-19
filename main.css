@@ -8,7 +8,6 @@
         height: 750px;
         opacity: 1;
         background-color: #111111;
-        /*border: 5px solid #F4C4D2FF; */
     }
 
     .bebas-neue-regular {
@@ -78,3 +77,9 @@
         background: rgba(138, 138, 138, 0.9) !important; /* Match the wrapper background */
     }
 
+    .info.legend img {
+        width: 30px;
+        height: 50px;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
