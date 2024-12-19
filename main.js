@@ -213,15 +213,19 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
 
         legend.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'legend');
-            this._div.innerHTML = "<h4>Film Festival Selections Worldwide</h4>" + '<b>' + "Mouseover for participant numbers <br> Click for country specifics <br> Click & drag to move" + '</b></br>';
+            this._div.innerHTML = "<h4>Film Festival Selections Worldwide</h4>" +
+                '<b>' + "Mouseover for festival numbers <br> Click for country specifics " +
+                "<br> Click & drag to move" + '</b></br>';
             return this._div;
         };
 
         legend.update = function (name) {
             if (name === "Film Festival Selections Worldwide") {
-                this._div.innerHTML = "<h4>" + name + "</h4>" + '<b>' + '<b>' + "Mouseover for participant numbers <br> Click for country specifics <br> Click & drag to move" + '</b></br>';
+                this._div.innerHTML = "<h4>" + name + "</h4>" + '<b>' + '<b>' + "Mouseover for festival numbers " +
+                    "<br> Click for country specifics <br> Click & drag to move" + '</b></br>';
             } else {
-                this._div.innerHTML = "<h4>" + name + "</h4>" + '<b>' + "Mouseover for participant numbers <br> Click map for world view" + '</b></br>';
+                this._div.innerHTML = "<h4>" + name + "</h4>" + '<b>' + "Scroll / Drag to zoom <br>" +
+                    "Click on marker for info <br> Click map to exit" + '</b></br>';
             }
 
         }
