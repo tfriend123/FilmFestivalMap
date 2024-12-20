@@ -82,6 +82,7 @@ d3.json("Data/RegionMapAll.json").then((geojson,err1)=> {
 
                 map.removeLayer(worldMap);
                 map.flyTo([x, y], zoom, { duration: .7 });
+                map.setView([x, y], zoom);
 
                 stateMap = L.geoJson(geojsonS, {
                     style: state_styleSmall,
